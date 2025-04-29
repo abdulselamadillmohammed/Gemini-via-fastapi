@@ -1,119 +1,39 @@
-### **Step-by-Step Setup Instructions**
+# 📚 Project Setup Guide
 
-#### **1. Clone or Download the Code**
-- clone repo
+![Python](https://img.shields.io/badge/Python-3.7%2B-blue?logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.95%2B-green?logo=fastapi)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
+
+This README provides clear step-by-step instructions for setting up and running the backend service.
+
 ---
 
-#### **2. Install Python**
-Ensure Python 3.7 or higher is installed on your friend’s machine. They can check their Python version by running:
+## **Step 1: Clone or Download the Repository**
+
+Clone the repository or download the code as a ZIP file.
+
+```bash
+# Example
+git clone https://github.com/your-username/your-repository.git
+```
+
+---
+
+## **Step 2: Install Python**
+
+Ensure Python 3.7 or higher is installed on your system.
+
+Check your Python version:
 ```bash
 python --version
 ```
-If Python is not installed, download and install it from [python.org](https://www.python.org/downloads/).
+If Python is not installed, download it from [python.org](https://www.python.org/downloads/).
 
 ---
 
-#### **3. Create a Virtual Environment**
-A virtual environment isolates the project dependencies from the global Python installation.
+## **Step 3: Create a Virtual Environment**
 
-1. Open a terminal (Command Prompt, PowerShell, or Terminal).
-2. Navigate to the directory where the `main.py` file is located:
-   ```bash
-   cd path/to/your/project
-   ```
-3. Create a virtual environment:
-   ```bash
-   python -m venv venv
-   ```
-   This will create a folder named `venv` in your project directory.
-
-4. Activate the virtual environment:
-   - **On Windows**:
-     ```bash
-     venv\Scripts\activate
-     ```
-   - **On macOS/Linux**:
-     ```bash
-     source venv/bin/activate
-     ```
-   Once activated, you’ll see `(venv)` in the terminal prompt.
-
----
-
-#### **4. Install Dependencies**
-Install the required Python packages using `pip`.
-
-1. Create a `requirements.txt` file in the same directory as `main.py` with the following content:
-   ```
-   fastapi
-   uvicorn
-   google-generativeai
-   pillow
-   python-multipart
-   ```
-   This file lists all the dependencies needed for the project.
-
-2. Install the dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
----
-
-#### **5. Set Up the Gemini API Key**
-Your friend will need a Gemini API key to use the backend.
-
-1. Ask them to sign up for a Gemini API key from [Google AI Studio](https://makersuite.google.com/).
-2. Once they have the API key, they should replace `YOUR_API_KEY` in the `main.py` file with their actual key:
-   ```python
-   genai.configure(api_key="YOUR_API_KEY")  # Replace with your actual API key
-   ```
-
----
-
-#### **6. Run the Backend**
-Start the FastAPI server using `uvicorn`.
-
-1. Ensure the virtual environment is activated (you should see `(venv)` in the terminal prompt).
-2. Run the following command:
-   ```bash
-   uvicorn main:app --reload
-   ```
-   - `main` refers to the `main.py` file.
-   - `app` refers to the FastAPI instance in the code.
-   - The `--reload` flag enables auto-reloading when code changes are made (useful during development).
-
-3. The server will start, and you’ll see output like this:
-   ```
-   INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-   ```
-
----
-
-#### **7. Test the Backend**
-Your friend can test the backend using Postman or any other API testing tool.
-
-1. Open Postman.
-2. Create a new `POST` request to `http://127.0.0.1:8000/analyze-image/`.
-3. In the `Body` tab, select `form-data`, add a key named `file`, and upload an image.
-4. Send the request and check the response.
-
----
-
-#### **8. (Optional) Deploy for Frontend Access**
-If your friend needs to access the backend from a frontend application, they can:
-1. Run the server on a specific host and port:
-   ```bash
-   uvicorn main:app --host 0.0.0.0 --port 8000
-   ```
-   This makes the backend accessible on the local network.
-
-2. Update the frontend code to point to the backend URL (e.g., `http://<your-ip>:8000/analyze-image/`).
-
----
-
-### **Summary of Commands**
-Here’s a quick summary of the commands your friend will need to run:
+It’s recommended to create a virtual environment to isolate the project's dependencies.
 
 ```bash
 # Navigate to the project directory
@@ -123,22 +43,115 @@ cd path/to/your/project
 python -m venv venv
 
 # Activate the virtual environment
-# On Windows:
+# On Windows
 venv\Scripts\activate
-# On macOS/Linux:
+# On macOS/Linux
+source venv/bin/activate
+```
+
+---
+
+## **Step 4: Install Project Dependencies**
+
+Ensure there is a `requirements.txt` file with the following content:
+
+```
+fastapi
+uvicorn
+google-generativeai
+pillow
+python-multipart
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## **Step 5: Set Up Gemini API Key**
+
+Obtain a Gemini API key from [Google AI Studio](https://makersuite.google.com/).
+
+Update your `main.py` file:
+
+```python
+genai.configure(api_key="YOUR_API_KEY")  # Replace YOUR_API_KEY with your real key
+```
+
+---
+
+## **Step 6: Run the Backend Server**
+
+Start the FastAPI server:
+
+```bash
+uvicorn main:app --reload
+```
+
+If successful, you will see:
+```
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+---
+
+## **Step 7: Test the Backend**
+
+Using Postman or any API client:
+
+1. Create a new `POST` request to:
+   ```
+http://127.0.0.1:8000/analyze-image/
+```
+2. Under `Body`, select `form-data` and upload a file with the key name `file`.
+3. Send the request and review the response.
+
+---
+
+## **Step 8: (Optional) Make Backend Accessible to Other Devices**
+
+Run the server on a public host:
+
+```bash
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
+
+Access from another device via:
+```
+http://<your-ip-address>:8000/analyze-image/
+```
+
+---
+
+# 🛠️ Quick Summary of Commands
+
+```bash
+# Navigate to project
+cd path/to/your/project
+
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# Windows:
+venv\Scripts\activate
+# macOS/Linux:
 source venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the backend
+# Run server
 uvicorn main:app --reload
 ```
 
 ---
 
-### **Folder Structure**
-After setting up, the project folder should look like this:
+# 📂 Folder Structure
+
 ```
 project/
 ├── main.py
@@ -148,13 +161,23 @@ project/
 
 ---
 
-### **Troubleshooting**
-- **Port Already in Use**: If port `8000` is already in use, specify a different port:
+# 🚑 Troubleshooting
+
+- **Port Already in Use**
   ```bash
   uvicorn main:app --reload --port 8001
   ```
-- **Missing Dependencies**: If any dependencies are missing, reinstall them using:
+
+- **Missing Dependencies**
   ```bash
   pip install -r requirements.txt
   ```
-- **CORS Issues**: If the frontend cannot access the backend, ensure CORS is properly configured in the backend code.
+
+- **CORS Issues**
+  Make sure CORS middleware is properly set up in FastAPI if accessing from a frontend.
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
