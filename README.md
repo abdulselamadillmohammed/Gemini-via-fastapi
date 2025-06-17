@@ -175,7 +175,6 @@ project/
 
 - **CORS Issues**
   Make sure CORS middleware is properly set up in FastAPI if accessing from a frontend.
-
 ---
 
 # 📄 License
